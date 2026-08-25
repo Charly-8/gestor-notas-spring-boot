@@ -1,5 +1,6 @@
 package com.charly.gestornotas.service;
 
+import com.charly.gestornotas.exception.NotaNoEncontradaException;
 import com.charly.gestornotas.model.Nota;
 import com.charly.gestornotas.repository.NotaRepository;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class NotaService {
     // Find
     public Nota buscarPorId(Long id) {
         return notaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Nota no encontrada"));
+                .orElseThrow(() -> new NotaNoEncontradaException("Nota no encontrada: ID - " + id));
     }
 
     // Update
