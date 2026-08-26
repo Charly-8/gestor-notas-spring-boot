@@ -26,7 +26,7 @@ public class NotaService {
         return notaRepository.findAll();
     }
 
-    // Find
+    // Read
     public Nota buscarPorId(Long id) {
         return notaRepository.findById(id)
                 .orElseThrow(() -> new NotaNoEncontradaException("Nota no encontrada: ID - " + id));

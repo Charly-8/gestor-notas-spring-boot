@@ -1,9 +1,6 @@
 package com.charly.gestornotas.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -24,8 +21,17 @@ public class Nota {
 
     private String titulo;
     private String contenido;
-    private String categoria;
     private LocalDateTime fechaCreacion;
+
+    /*
+    @ManyToOne — le dice a Hibernate: "muchas Nota pueden apuntar a una Categoria." Se pone del lado de Nota porque es Nota la que tiene "el muchos" (muchas notas pueden compartir la misma categoría).
+    @JoinColumn(name = "categoria_id") — le dice explícitamente qué nombre le vas a dar a la columna que va a actuar como llave foránea en la tabla NOTA. Sin esto, Hibernate elegiría un nombre automático (más feo), así que es buena práctica ponerlo tú mismo.
+    El tipo del campo ya no es String, es Categoria — ahora Nota tiene una referencia directa al objeto completo de categoría, no solo un texto suelto.
+    */
+
+    @ManyToOne
+    @JoinColumn(name="categoria_id")
+    private Categoria categoria;
 
     // Getters & Setters
 
@@ -54,11 +60,11 @@ public class Nota {
     }
 
     public String getCategoria() {
-        return categoria;
+        return categoria.getNombre();
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategoria(String nombreCategoria) {
+        this.categoria.setNombre(nombreCategoria);
     }
 
     public LocalDateTime getFechaCreacion() {
