@@ -12,6 +12,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> manejarNotaNoEncontrada(NotaNoEncontradaException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(CategoriaNoEncontradaException.class)
+    public ResponseEntity<String> manejarCategoriaNoEncontrada(CategoriaNoEncontradaException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }
 
 
