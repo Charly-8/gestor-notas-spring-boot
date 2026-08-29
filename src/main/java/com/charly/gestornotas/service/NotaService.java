@@ -46,7 +46,6 @@ public class NotaService {
     // Delete
 
     public void eliminar(Long id) {
-        notaRepository.findById(id);
         notaRepository.deleteById(id);
     }
 }

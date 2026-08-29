@@ -1,7 +1,6 @@
 package com.charly.gestornotas.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity

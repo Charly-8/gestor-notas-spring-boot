@@ -4,10 +4,12 @@ import com.charly.gestornotas.exception.CategoriaNoEncontradaException;
 import com.charly.gestornotas.model.Categoria;
 import com.charly.gestornotas.repository.CategoriaRepository;
 import org.hibernate.sql.exec.ExecutionException;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
@@ -33,17 +35,15 @@ public class CategoriaService {
     }
 
     // Update
-    public Categoria actualizar(Long id) {
-        Categoria categoria = buscarPorId(id);
+    public Categoria actualizar(Long id, Categoria categoriaActualizada) {
+        Categoria categoriaSeleccionada = buscarPorId(id);
 
-        categoria.setNombre(categoria.getNombre());
-        return categoriaRepository.save(categoria);
+        categoriaSeleccionada.setNombre(categoriaActualizada.getNombre());
+        return categoriaRepository.save(categoriaSeleccionada);
     }
 
     // Delete
     public void eliminar(Long id) {
-        Categoria categoria = buscarPorId(id);
-
-        categoriaRepository.delete(categoria);
+        categoriaRepository.deleteById(id);
     }
 }
