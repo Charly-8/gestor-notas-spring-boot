@@ -58,12 +58,12 @@ public class Nota {
         this.contenido = contenido;
     }
 
-    public String getCategoria() {
-        return categoria.getNombre();
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategoria(String nombreCategoria) {
-        this.categoria.setNombre(nombreCategoria);
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public LocalDateTime getFechaCreacion() {
